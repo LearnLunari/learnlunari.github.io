@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>English → Lunari Translator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="wrap">
+    <div class="title-row">
+      <h1>English → Lunari</h1>
+      <span class="badge" id="dictStatus">Loading dictionary…</span>
+    </div>
+    <p class="sub">
+      Type English on the left. Lunari appears on the right. Punctuation stays. Unknown words stay in English.
+    </p>
+  </header>
+
+  <main class="wrap grid">
+    <section class="card">
+      <h2>English</h2>
+      <textarea id="englishInput" placeholder="Type English here…"></textarea>
+
+      <div class="row">
+        <label class="chk">
+          <input type="checkbox" id="preferPhrases" checked />
+          Prefer phrase matches (exact)
+        </label>
+        <label class="chk">
+          <input type="checkbox" id="markUnknown" />
+          Mark unknown words
+        </label>
+      </div>
+
+      <div class="row buttons">
+        <button id="btnTranslate" class="primary">Translate</button>
+        <button id="btnClear">Clear</button>
+        <button id="btnCopy">Copy Lunari</button>
+      </div>
+
+      <details class="tools">
+        <summary>Dictionary tools</summary>
+        <div class="toolbox">
+          <div class="tool">
+            <h3>Load custom dictionary JSON</h3>
+            <p class="hint">
+              Upload a JSON file in the same format as <code>lunari_dict.json</code>.
+              It will override the built-in file and save locally in your browser.
+            </p>
+            <input type="file" id="dictFile" accept="application/json" />
+            <button id="btnUseBuiltIn">Revert to built-in dictionary</button>
+          </div>
+
+          <div class="tool">
+            <h3>Export current dictionary</h3>
+            <p class="hint">Downloads whatever dictionary you’re currently using (built-in or custom).</p>
+            <button id="btnExportDict">Download dictionary JSON</button>
+          </div>
+
+          <div class="tool">
+            <h3>Quick add words</h3>
+            <p class="hint">
+              Paste lines like: <code>hello = ya</code> or <code>good morning = yara muna</code> (phrases allowed).
+              Words go into <b>words</b>; multi-word lines go into <b>phrases</b>.
+            </p>
+            <textarea id="quickAdd" placeholder="hello = ya&#10;thank you = nesa"></textarea>
+            <button id="btnAddLines">Add lines to dictionary</button>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>Lunari</h2>
+      <textarea id="lunariOutput" placeholder="Translation appears here…" readonly></textarea>
+
+      <div class="meta">
+        <div><b>Notes:</b></div>
+        <ul>
+          <li>Case is preserved (Hello → Ya). ALL CAPS stays ALL CAPS.</li>
+          <li>Unknown words are kept as-is (or bracketed if “Mark unknown words” is on).</li>
+          <li>Phrase matches require exact text (ignoring case and extra spaces).</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <span>Made for GitHub Pages • Lunari Translator</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
